@@ -54,12 +54,10 @@ public class Paint {
 
         if (!cells[cursor.col][cursor.row].isPainted){
 
-            System.out.println("pintar");
             cells[cursor.col][cursor.row].paint();
             return;
         }
 
-        System.out.println("despintar");
         cells[cursor.col][cursor.row].unPaint();
     }
 

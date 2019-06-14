@@ -41,6 +41,13 @@ public class Cell {
     void highLigthOff(){
 
         rectangle.setColor(Color.BLACK);
+
+        if (isPainted)
+        {
+            rectangle.fill();
+            return;
+        }
+
         rectangle.draw();
     }
 
