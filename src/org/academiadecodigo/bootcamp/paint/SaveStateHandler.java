@@ -45,6 +45,9 @@ class SaveStateHandler {
                     while ((line = reader.readLine()) != null) {
 
                         linesState[row++] = line;
+                        if (row >= Paint.ROWS){
+                            break;
+                        }
                     }
 
                 } catch (IOException e) {

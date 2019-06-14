@@ -112,8 +112,17 @@ public class Paint {
 
         for (int i = 0; i < ROWS; i++){
             col = 0;
+            if (i > states[i].length()){
+                break;
+            }
+
+            if (states[i].toCharArray().length >= COLS){
+                states[i] = states[i].substring(0,COLS);
+            }
 
             for (char c : states[i].toCharArray()) {
+
+                System.out.println(col);
 
                 if (c == '0'){
 
