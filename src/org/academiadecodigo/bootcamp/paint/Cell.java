@@ -29,25 +29,4 @@ public class Cell {
         isPainted = false;
     }
 
-
-    void highlightOn(){
-
-        rectangle.setColor(Color.GREEN);
-        rectangle.fill();
-    }
-
-
-    void highLightOff(){
-
-        rectangle.setColor(Color.BLACK);
-
-        if (isPainted)
-        {
-            rectangle.fill();
-            return;
-        }
-
-        rectangle.draw();
-    }
-
 }

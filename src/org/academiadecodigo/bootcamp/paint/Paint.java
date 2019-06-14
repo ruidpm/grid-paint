@@ -16,8 +16,6 @@ public class Paint {
         cursor = new Cursor(this);
 
         init();
-
-        start();
     }
 
 
@@ -41,12 +39,6 @@ public class Paint {
     static int colToX(int col){
         return col * CELL_SIZE + PADDING;
     }
-
-
-    private void start(){
-        cells[cursor.col][cursor.row].highlightOn();
-    }
-
 
 
     public void paintCell(){

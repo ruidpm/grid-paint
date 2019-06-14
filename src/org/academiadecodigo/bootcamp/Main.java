@@ -9,6 +9,7 @@ public class Main {
 
         Paint paint = new Paint();
         new PaintKeyboardHandler(paint);
+        new PaintKeyboardHandler(paint);
 
     }
 }
