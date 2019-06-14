@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.keyboard;
 
+import org.academiadecodigo.bootcamp.paint.Cursor;
 import org.academiadecodigo.bootcamp.paint.Paint;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -9,13 +10,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class PaintKeyboardHandler implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Paint paint;
+    private Cursor cursor;
 
 
 
-    public PaintKeyboardHandler(Paint paint){
+    public PaintKeyboardHandler(Cursor cursor){
 
-        this.paint = paint;
+        this.cursor = cursor;
 
         keyboard = new Keyboard(this);
 
@@ -27,33 +28,29 @@ public class PaintKeyboardHandler implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()){
 
-            case KeyboardEvent.KEY_SPACE:
 
-                paint.paintCell();
-
-                break;
 
             case (KeyboardEvent.KEY_UP):
 
-                paint.cursorUp();
+                cursor.cursorUp();
 
                 break;
 
             case KeyboardEvent.KEY_DOWN:
 
-                paint.cursorDown();
+                cursor.cursorDown();
 
                 break;
 
             case (KeyboardEvent.KEY_LEFT):
 
-                paint.cursorLeft();
+                cursor.cursorLeft();
 
                 break;
 
                 case KeyboardEvent.KEY_RIGHT:
 
-                paint.cursorRigth();
+                cursor.cursorRight();
 
                 break;
 
@@ -63,6 +60,14 @@ public class PaintKeyboardHandler implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_SPACE:
+
+                cursor.paintCell();
+
+                break;
+        }
     }
 
 
@@ -84,7 +89,7 @@ public class PaintKeyboardHandler implements KeyboardHandler {
 
         setKeyAndEvent(KeyboardEvent.KEY_RIGHT, KeyboardEventType.KEY_PRESSED);
 
-        setKeyAndEvent(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_PRESSED);
+        setKeyAndEvent(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_RELEASED);
     }
 
 }

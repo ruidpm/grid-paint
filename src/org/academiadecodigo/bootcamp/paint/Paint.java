@@ -1,26 +1,20 @@
 package org.academiadecodigo.bootcamp.paint;
 
-import org.academiadecodigo.bootcamp.keyboard.PaintKeyboardHandler;
-
 public class Paint {
 
-    private final int COLS = 20;
-    private final int ROWS = 20;
+    static final int COLS = 20;
+    static final int ROWS = 20;
     static final int CELL_SIZE = 20;
     static final int PADDING = 10;
 
-    private Cell[][] cells;
-    private int cursorCol;
-    private int cursorRow;
+    Cell[][] cells;
+    private Cursor cursor;
 
 
     public Paint(){
 
         cells = new Cell[COLS][ROWS];
-        cursorCol = 0;
-        cursorRow = 0;
-
-        new PaintKeyboardHandler(this);
+        cursor = new Cursor(this);
 
         init();
 
@@ -51,61 +45,26 @@ public class Paint {
 
 
     private void start(){
-        cells[cursorCol][cursorRow].highlightOn();
+        cells[cursor.col][cursor.row].highlightOn();
     }
 
 
-    public void cursorUp(){
 
-        if (cursorRow - 1 >= 0){
+    void paintCell(){
 
-            cells[cursorCol][cursorRow].highLigthOff();
+        if (!cells[cursor.col][cursor.row].isPainted){
 
-            cells[cursorCol][--cursorRow].highlightOn();
-        }
-    }
-
-
-    public void cursorDown(){
-
-        if (cursorRow + 1 < ROWS){
-
-            cells[cursorCol][cursorRow].highLigthOff();
-
-            cells[cursorCol][++cursorRow].highlightOn();
-        }
-    }
-
-
-    public void cursorLeft(){
-
-        if (cursorCol - 1 >= 0){
-
-            cells[cursorCol][cursorRow].highLigthOff();
-
-            cells[--cursorCol][cursorRow].highlightOn();
-        }
-    }
-
-
-    public void cursorRigth(){
-
-        if (cursorCol + 1 < COLS){
-
-            cells[cursorCol][cursorRow].highLigthOff();
-
-            cells[++cursorCol][cursorRow].highlightOn();
-        }
-    }
-
-    public void paintCell(){
-
-        if (cells[cursorCol][cursorRow].isPainted){
-
-            cells[cursorCol][cursorRow].paint();
+            System.out.println("pintar");
+            cells[cursor.col][cursor.row].paint();
             return;
         }
 
-        cells[cursorCol][cursorRow].unPaint();
+        System.out.println("despintar");
+        cells[cursor.col][cursor.row].unPaint();
+    }
+
+
+    public Cursor getCursor() {
+        return cursor;
     }
 }
