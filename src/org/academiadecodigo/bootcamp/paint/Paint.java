@@ -9,14 +9,11 @@ public class Paint {
 
     Cell[][] cells;
     private Cursor cursor;
-    private SaveStateHandler saveStateHandler;
-
 
     public Paint(){
 
         cells = new Cell[COLS][ROWS];
         cursor = new Cursor(this);
-        saveStateHandler = new SaveStateHandler();
 
         init();
 
@@ -71,7 +68,28 @@ public class Paint {
 
     public void saveGridState(){
 
-        saveStateHandler.saveGridState(cells);
+        String[] linesState = new String[ROWS];
+
+        for (int i = 0; i < Paint.ROWS; i++){
+
+            linesState[i] = "";
+
+            for (int k = 0; k < Paint.COLS; k++){
+
+                if (cells[k][i].isPainted){
+
+                    linesState[i] += 1;
+                    continue;
+                }
+
+                linesState[i] += 0;
+            }
+
+            linesState[i] += "\n";
+        }
+
+
+        SaveStateHandler.saveGridState(linesState);
     }
 
 
@@ -89,6 +107,22 @@ public class Paint {
 
     public void loadGridState(){
 
-        saveStateHandler.loadGridState(cells);
+        String[] states = SaveStateHandler.loadGridState();
+        int col;
+
+        for (int i = 0; i < ROWS; i++){
+            col = 0;
+
+            for (char c : states[i].toCharArray()) {
+
+                if (c == '0'){
+
+                    cells[col++][i].unPaint();
+                    continue;
+                }
+
+                cells[col++][i].paint();
+            }
+        }
     }
 }

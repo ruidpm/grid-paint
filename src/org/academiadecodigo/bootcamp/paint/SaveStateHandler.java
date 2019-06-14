@@ -5,31 +5,16 @@ import java.io.*;
 class SaveStateHandler {
 
 
-    void saveGridState(Cell[][] cells){
+    static void saveGridState(String[] linesState){
 
-        String lineState = "";
         BufferedWriter writer = null;
 
         try {
-             writer = new BufferedWriter(new FileWriter("resources/saveState"));
+            writer = new BufferedWriter(new FileWriter("resources/saveState"));
 
-            for (int i = 0; i < Paint.ROWS; i++){
+            for (String s : linesState) {
 
-                for (int k = 0; k < Paint.COLS; k++){
-
-                    if (cells[k][i].isPainted){
-
-                        lineState += 1;
-                        continue;
-                    }
-
-                    lineState += 0;
-                }
-
-                lineState += "\n";
-                writer.write(lineState);
-
-                lineState = "";
+                writer.write(s);
             }
 
             writer.flush();
@@ -44,48 +29,41 @@ class SaveStateHandler {
 
 
 
-    void loadGridState(Cell[][] cells){
+    static String[] loadGridState(){
 
         BufferedReader reader = null;
-        String line = "";
+        String[] linesState = new String[Paint.ROWS];
+        String line;
 
         try {
             reader = new BufferedReader(new FileReader("resources/saveState"));
-            int col = 0;
 
-            for (int i = 0; i < Paint.ROWS; i++){
-                col = 0;
+            int row = 0;
 
                 try {
-                    line = reader.readLine();
 
-                    for (char c : line.toCharArray()) {
+                    while ((line = reader.readLine()) != null) {
 
-                        if (c == '0'){
-                            cells[col++][i].unPaint();
-                            continue;
-                        }
-
-                        cells[col++][i].paint();
+                        linesState[row++] = line;
                     }
-
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
             closeStream(reader);
         }
+
+        return linesState;
     }
 
 
 
 
-    private void closeStream(Closeable stream){
+    static private void closeStream(Closeable stream){
 
         try {
             stream.close();
