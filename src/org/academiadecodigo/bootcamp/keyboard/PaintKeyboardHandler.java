@@ -11,24 +11,26 @@ public class PaintKeyboardHandler implements KeyboardHandler {
 
     private Keyboard keyboard;
     private Cursor cursor;
+    private Paint paint;
 
 
 
-    public PaintKeyboardHandler(Cursor cursor){
+    public PaintKeyboardHandler(Paint paint){
 
-        this.cursor = cursor;
+        cursor = paint.getCursor();
+
+        this.paint = paint;
 
         keyboard = new Keyboard(this);
 
         addKeysAndEvents();
     }
 
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()){
-
-
 
             case (KeyboardEvent.KEY_UP):
 
@@ -54,6 +56,12 @@ public class PaintKeyboardHandler implements KeyboardHandler {
 
                 break;
 
+            case KeyboardEvent.KEY_C:
+
+                paint.clearScreen();
+
+                break;
+
         }
 
     }
@@ -62,9 +70,22 @@ public class PaintKeyboardHandler implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
+
             case KeyboardEvent.KEY_SPACE:
 
-                cursor.paintCell();
+                paint.paintCell();
+
+                break;
+
+            case KeyboardEvent.KEY_S:
+
+                paint.saveGridState();
+
+                break;
+
+            case KeyboardEvent.KEY_L:
+
+                paint.loadGridState();
 
                 break;
         }
@@ -90,6 +111,12 @@ public class PaintKeyboardHandler implements KeyboardHandler {
         setKeyAndEvent(KeyboardEvent.KEY_RIGHT, KeyboardEventType.KEY_PRESSED);
 
         setKeyAndEvent(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_RELEASED);
+
+        setKeyAndEvent(KeyboardEvent.KEY_S, KeyboardEventType.KEY_RELEASED);
+
+        setKeyAndEvent(KeyboardEvent.KEY_L, KeyboardEventType.KEY_RELEASED);
+
+        setKeyAndEvent(KeyboardEvent.KEY_C, KeyboardEventType.KEY_PRESSED);
     }
 
 }

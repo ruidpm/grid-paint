@@ -12,7 +12,6 @@ public class Cell {
     Cell(int col, int row){
 
         rectangle = new Rectangle(Paint.colToX(col), Paint.rowToY(row), Paint.CELL_SIZE, Paint.CELL_SIZE);
-        rectangle.setColor(Color.BLACK);
         rectangle.draw();
     }
 
@@ -38,7 +37,7 @@ public class Cell {
     }
 
 
-    void highLigthOff(){
+    void highLightOff(){
 
         rectangle.setColor(Color.BLACK);
 

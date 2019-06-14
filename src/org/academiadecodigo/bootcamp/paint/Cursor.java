@@ -18,7 +18,7 @@ public class Cursor {
 
         if (row - 1 >= 0){
 
-            paint.cells[col][row].highLigthOff();
+            paint.cells[col][row].highLightOff();
 
             paint.cells[col][--row].highlightOn();
         }
@@ -29,7 +29,7 @@ public class Cursor {
 
         if (row + 1 < Paint.ROWS){
 
-            paint.cells[col][row].highLigthOff();
+            paint.cells[col][row].highLightOff();
 
             paint.cells[col][++row].highlightOn();
         }
@@ -40,7 +40,7 @@ public class Cursor {
 
         if (col - 1 >= 0){
 
-            paint.cells[col][row].highLigthOff();
+            paint.cells[col][row].highLightOff();
 
             paint.cells[--col][row].highlightOn();
         }
@@ -51,14 +51,10 @@ public class Cursor {
 
         if (col + 1 < Paint.COLS){
 
-            paint.cells[col][row].highLigthOff();
+            paint.cells[col][row].highLightOff();
 
             paint.cells[++col][row].highlightOn();
         }
     }
 
-    public void paintCell(){
-
-        paint.paintCell();
-    }
 }

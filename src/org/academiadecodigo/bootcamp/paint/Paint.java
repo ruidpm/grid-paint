@@ -2,19 +2,21 @@ package org.academiadecodigo.bootcamp.paint;
 
 public class Paint {
 
-    static final int COLS = 20;
-    static final int ROWS = 20;
+    static final int COLS = 21;
+    static final int ROWS = 21;
     static final int CELL_SIZE = 20;
     static final int PADDING = 10;
 
     Cell[][] cells;
     private Cursor cursor;
+    private SaveStateHandler saveStateHandler;
 
 
     public Paint(){
 
         cells = new Cell[COLS][ROWS];
         cursor = new Cursor(this);
+        saveStateHandler = new SaveStateHandler();
 
         init();
 
@@ -50,7 +52,7 @@ public class Paint {
 
 
 
-    void paintCell(){
+    public void paintCell(){
 
         if (!cells[cursor.col][cursor.row].isPainted){
 
@@ -64,5 +66,29 @@ public class Paint {
 
     public Cursor getCursor() {
         return cursor;
+    }
+
+
+    public void saveGridState(){
+
+        saveStateHandler.saveGridState(cells);
+    }
+
+
+    public void clearScreen(){
+
+        for (int i = 0; i < COLS; i++){
+
+            for (int k = 0; k < ROWS; k++){
+
+                cells[i][k].unPaint();
+            }
+        }
+    }
+
+
+    public void loadGridState(){
+
+        saveStateHandler.loadGridState(cells);
     }
 }
