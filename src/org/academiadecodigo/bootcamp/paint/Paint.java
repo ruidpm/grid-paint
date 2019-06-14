@@ -122,8 +122,6 @@ public class Paint {
 
             for (char c : states[i].toCharArray()) {
 
-                System.out.println(col);
-
                 if (c == '0'){
 
                     cells[col++][i].unPaint();
