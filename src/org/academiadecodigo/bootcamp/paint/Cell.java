@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.paint;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Cell {
@@ -7,14 +8,43 @@ public class Cell {
     private int row;
     private int col;
     private Rectangle rectangle;
-    private boolean isPainted;
+    boolean isPainted;
 
 
-    public Cell(int col, int row){
+    Cell(int col, int row){
 
         this.col = col;
         this.row = row;
         rectangle = new Rectangle(Paint.colToX(col), Paint.rowToY(row), Paint.CELL_SIZE, Paint.CELL_SIZE);
+        rectangle.setColor(Color.BLACK);
+        rectangle.draw();
+    }
+
+
+    void paint(){
+
+        rectangle.setColor(Color.BLACK);
+        rectangle.fill();
+        isPainted = true;
+    }
+
+    void unPaint(){
+
+        rectangle.draw();
+        isPainted = false;
+    }
+
+
+    void highlightOn(){
+
+        rectangle.setColor(Color.GREEN);
+        rectangle.fill();
+    }
+
+
+    void highLigthOff(){
+
+        rectangle.setColor(Color.BLACK);
         rectangle.draw();
     }
 
