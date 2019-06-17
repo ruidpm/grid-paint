@@ -16,17 +16,22 @@ public class Cell {
     }
 
 
-    void paint(){
+    void paint(Color color){
 
-        rectangle.setColor(Color.BLACK);
+        rectangle.setColor(color);
         rectangle.fill();
         isPainted = true;
     }
 
     void unPaint(){
 
+        rectangle.setColor(Color.BLACK);
         rectangle.draw();
         isPainted = false;
+    }
+
+    Color getRectangleColor(){
+        return rectangle.getColor();
     }
 
 }

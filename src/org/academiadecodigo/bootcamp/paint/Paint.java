@@ -1,5 +1,9 @@
 package org.academiadecodigo.bootcamp.paint;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
+
+import static org.academiadecodigo.simplegraphics.graphics.Color.*;
+
 public class Paint {
 
     static final int COLS = 21;
@@ -13,7 +17,7 @@ public class Paint {
     public Paint(){
 
         cells = new Cell[COLS][ROWS];
-        cursor = new Cursor(this);
+        cursor = new Cursor();
 
         init();
     }
@@ -45,7 +49,7 @@ public class Paint {
 
         if (!cells[cursor.col][cursor.row].isPainted){
 
-            cells[cursor.col][cursor.row].paint();
+            cells[cursor.col][cursor.row].paint(cursor.rectangle.getColor());
             return;
         }
 
@@ -70,7 +74,7 @@ public class Paint {
 
                 if (cells[k][i].isPainted){
 
-                    linesState[i] += 1;
+                    linesState[i] += getColorChar(cells[k][i].getRectangleColor());
                     continue;
                 }
 
@@ -96,6 +100,68 @@ public class Paint {
         }
     }
 
+    private String getColorChar(Color color){
+
+
+        if (color == BLACK){
+            return "B";
+        }
+
+        if (color == GREEN){
+            return "G";
+        }
+
+        if (color == PINK){
+            return "P";
+        }
+
+        if (color == YELLOW){
+            return "Y";
+        }
+
+        if (color == RED){
+            return "R";
+        }
+
+        /*switch (color){
+
+            case Color.CYAN:
+
+                return "B";
+        }*/
+        return "0";
+    }
+
+    private Color getColorFromChar(char color){
+
+        switch (color){
+
+            case 'B' :
+
+                return BLACK;
+
+            case 'G' :
+
+                return GREEN;
+
+            case 'P' :
+
+                return PINK;
+
+            case 'Y' :
+
+                return YELLOW;
+
+            case 'R' :
+
+                return RED;
+
+            default:
+
+                return Color.WHITE;
+        }
+
+    }
 
     public void loadGridState(){
 
@@ -120,7 +186,7 @@ public class Paint {
                     continue;
                 }
 
-                cells[col++][i].paint();
+                cells[col++][i].paint(getColorFromChar(c));
             }
         }
     }

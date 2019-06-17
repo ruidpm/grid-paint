@@ -6,12 +6,12 @@ import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
-public class PaintMouseKeyboardHandler implements MouseHandler {
+public class PaintMouseHandler implements MouseHandler {
 
    private Paint paint;
    private Mouse mouse;
 
-   public PaintMouseKeyboardHandler(Paint paint){
+   public PaintMouseHandler(Paint paint){
 
        mouse = new Mouse(this);
        this.paint = paint;
@@ -34,5 +34,6 @@ public class PaintMouseKeyboardHandler implements MouseHandler {
     private void init(){
 
        MouseEvent event = new MouseEvent(1,1,MouseEventType.MOUSE_CLICKED);
+       mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
     }
 }
