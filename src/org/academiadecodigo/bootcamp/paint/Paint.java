@@ -22,6 +22,7 @@ public class Paint {
         init();
     }
 
+    // TODO: 18/06/2019 change colors
 
     private void init(){
 
@@ -83,7 +84,6 @@ public class Paint {
 
             linesState[i] += "\n";
         }
-
 
         SaveStateHandler.saveGridState(linesState);
     }

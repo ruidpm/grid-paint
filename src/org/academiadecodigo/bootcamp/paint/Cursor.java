@@ -28,7 +28,7 @@ public class Cursor {
         rectangle.fill();
     }
 
-
+// TODO: 18/06/2019 composition with cell 
 
     public void changeRectangleColor(){
 

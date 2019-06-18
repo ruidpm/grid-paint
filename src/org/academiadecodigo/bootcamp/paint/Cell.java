@@ -34,4 +34,6 @@ public class Cell {
         return rectangle.getColor();
     }
 
+
+    // TODO: 18/06/2019 add toString according to color to write in saveFile 
 }

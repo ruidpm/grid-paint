@@ -26,6 +26,7 @@ public class PaintKeyboardHandler implements KeyboardHandler {
         addKeysAndEvents();
     }
 
+    // TODO: 18/06/2019   add flag to keep painting; true on press, false on release
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
